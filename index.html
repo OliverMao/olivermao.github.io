@@ -185,7 +185,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="思则有备，有备而无患"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -478,7 +478,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <text rel="nofollow noopener"><span>TickBit</span><text> <i class="iconfont icon-love"></i> <text rel="nofollow noopener"><span>Mao</span><text> 
     </div>
   
   
@@ -518,7 +518,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://blog.healthycal.top/php/select.php',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'content'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://blog.healthycal.top/php/select.php:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>
