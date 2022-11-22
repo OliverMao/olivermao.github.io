@@ -19,23 +19,23 @@
     <meta name="description" content="4 网络层重点内容：  虚拟互联网络和两种服务、两个层面的概念。 IP地址与MAC地址的关系。 传统分类的IP地址和无分类域间路由选择CIDR（后者是重点）。 路由选择协议的工作原理。  4.1 网络层的几个重要概念4.1.1 网络层提供的服务针对计算机通信的可靠性交付，是网络还是端系统进行负责提出了两类方案：  建立连接（在分组交换中是建立一条**虚电路VC(Virtual Circuit)**">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络">
-<meta property="og:url" content="https://blog.healthycal.top/2022/11/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
-<meta property="og:site_name" content="OliverMao&#39;s Blog">
+<meta property="og:url" content="https://blog.yoobit.cn/2022/11/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="YooBit&#39;s Blog">
 <meta property="og:description" content="4 网络层重点内容：  虚拟互联网络和两种服务、两个层面的概念。 IP地址与MAC地址的关系。 传统分类的IP地址和无分类域间路由选择CIDR（后者是重点）。 路由选择协议的工作原理。  4.1 网络层的几个重要概念4.1.1 网络层提供的服务针对计算机通信的可靠性交付，是网络还是端系统进行负责提出了两类方案：  建立连接（在分组交换中是建立一条**虚电路VC(Virtual Circuit)**">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.healthycal.top/img_out/net/net_index.png">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/net/net_index.png">
 <meta property="article:published_time" content="2022-11-11T07:01:00.000Z">
-<meta property="article:modified_time" content="2022-11-21T15:52:36.496Z">
+<meta property="article:modified_time" content="2022-11-22T06:22:33.307Z">
 <meta property="article:author" content="Oliver Mao">
 <meta property="article:tag" content="文档">
 <meta property="article:tag" content="基础">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.healthycal.top/img_out/net/net_index.png">
+<meta name="twitter:image" content="https://blog.yoobit.cn/img_out/net/net_index.png">
   
   
   
-  <title>计算机网络 - OliverMao&#39;s Blog</title>
+  <title>计算机网络 - YooBit&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.healthycal.top","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.yoobit.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -99,7 +99,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>OliverMao&#39;s Blog</strong>
+      <strong>YooBit&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://blog.healthycal.top/img_out/net/net_banner.webp') no-repeat center center; background-size: cover;">
+     style="background: url('https://blog.yoobit.cn/img_out/net/net_banner.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          14k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          109 分钟
+          114 分钟
         
       </span>
     
@@ -293,7 +293,7 @@
 <p> 优点：网络造价大大降低、运行方式灵活，能够适应多种应用。</p>
 </li>
 </ol>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_1.png" srcset="/img/loading.gif" lazyload alt="网络层提供的两种服务" title="网络层提供的两种服务"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_1.png" srcset="/img/loading.gif" lazyload alt="网络层提供的两种服务" title="网络层提供的两种服务"></p>
 <p>虚电路服务与数据报服务的主要区别：</p>
 <table>
 <thead>
@@ -345,7 +345,7 @@
 <li>转发源主机和目标主机之间所传送的数据</li>
 <li>传送路由信息。目的是为了在路由器中创建路由表，并由此导出为转发分组而用的转发表。</li>
 </ul>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_2.png" srcset="/img/loading.gif" lazyload alt="网络层的数据层面和控制层面" title="网络层的数据层面和控制层面"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_2.png" srcset="/img/loading.gif" lazyload alt="网络层的数据层面和控制层面" title="网络层的数据层面和控制层面"></p>
 <p>网络层抽象划分为<strong>数据层面</strong>（或<strong>转发层面</strong>）和<strong>控制层面</strong></p>
 <blockquote>
 <p>数据层面中：每一个路由器根据本路由器生成的转发表，把收到的分组从查找到的相应接口转发出去。采用硬件转发速度非常快。</p>
@@ -354,7 +354,7 @@
 <p>控制层面中：路由器必须与相邻的路由器经常交换路由信息，才能创建出本路由器的路由表。需要使用软件速度会慢很多。</p>
 </blockquote>
 <p>数据层面是<strong>独立</strong>地转发分组，而控制层面需要许多路由器<strong>协同动作</strong>。</p>
-<p>新技术：<strong>软件定义网络SDN</strong>（Softwware Defined Network）<br><img src="https://blog.healthycal.top/img_out/net/net_4_2.png" srcset="/img/loading.gif" lazyload alt="软件定义网络SDN中的控制层面和数据层面" title="软件定义网络SDN中的控制层面和数据层面"><br>在SDN结构中，路由选择软件不存在了，因此路由器之间不再相互交换路由信息。在网络控制层面上由逻辑上集中的<strong>远程控制器</strong>（物理上可以由不同地点多个服务器组成），负责掌握各主机和整个网络的状态，并为每个分组计算最佳路由，在每个路由器中生成正确转发表。路由器仅需收到分组、查找转发表、转发分组即可。</p>
+<p>新技术：<strong>软件定义网络SDN</strong>（Softwware Defined Network）<br><img src="https://blog.yoobit.cn/img_out/net/net_4_2.png" srcset="/img/loading.gif" lazyload alt="软件定义网络SDN中的控制层面和数据层面" title="软件定义网络SDN中的控制层面和数据层面"><br>在SDN结构中，路由选择软件不存在了，因此路由器之间不再相互交换路由信息。在网络控制层面上由逻辑上集中的<strong>远程控制器</strong>（物理上可以由不同地点多个服务器组成），负责掌握各主机和整个网络的状态，并为每个分组计算最佳路由，在每个路由器中生成正确转发表。路由器仅需收到分组、查找转发表、转发分组即可。</p>
 <p>像大型专用数据中心之间的广域网，使用SDN模式建造可以使网络运行效率提高，同时获得更好的经济效益。</p>
 <h2 id="4-2-网络协议IP"><a href="#4-2-网络协议IP" class="headerlink" title="4.2 网络协议IP"></a>4.2 网络协议IP</h2><p><strong>网络协议IP</strong>（Internet Protocol）<br>与协议IP配套使用的还有三个协议：</p>
 <ul>
@@ -362,7 +362,7 @@
 <li><strong>网络控制报文协议 ICMP</strong>(Internet Control Message Protocol)</li>
 <li><strong>网际组管理协议 IGMP</strong>(Internet Group Management Protocol)</li>
 </ul>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_4.png" srcset="/img/loading.gif" lazyload alt="网络协议IP及其配套协议" title="网络协议IP及其配套协议"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_4.png" srcset="/img/loading.gif" lazyload alt="网络协议IP及其配套协议" title="网络协议IP及其配套协议"></p>
 <h3 id="4-2-1-虚拟互联网络"><a href="#4-2-1-虚拟互联网络" class="headerlink" title="4.2.1 虚拟互联网络"></a>4.2.1 虚拟互联网络</h3><p>将网络互相连接起来需要一些中间设备：</p>
 <ol>
 <li>物理层使用的中间设备叫做<strong>转发器</strong>(repeater)。</li>
@@ -370,28 +370,28 @@
 <li>网络层使用的中间设备叫做<strong>路由器</strong>(router)。</li>
 <li>在网络层以上使用的设备叫做<strong>网关</strong>(gateway)。</li>
 </ol>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_5.png" srcset="/img/loading.gif" lazyload alt="IP网的概念" title="IP网的概念"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_5.png" srcset="/img/loading.gif" lazyload alt="IP网的概念" title="IP网的概念"></p>
 <p>如图4-5许多计算机网络通过一些路由器进行互联。因都使用相同的<strong>网际协议IP</strong>，因此可以把互联后的计算机网络看成一个<strong>虚拟互联网络</strong>(internet)。虚拟互联也就是逻辑互联，<strong>在网络层看起来好像是一个统一的网络</strong>。</p>
 <p>使用协议IP的虚拟互联网络简称为<strong>IP网</strong>（IP网是虚拟的，但不必每次都强调“虚拟”二字）。</p>
 <p><strong>使用IP网的好处是</strong>：当IP网上的主机进行通信时，就好像在一个单个网络上通信一样，它们看不见互连的各网络的具体异构细节（如具体的编址方式、路由选择协议等）。</p>
 <p>如果在这种覆盖全球的IP网的上层使用TCP协议，那么就是现在的互联网(Internet)。</p>
 <p>当很多异构网络通过路由器互连，同时所有网络均使用相同的协议IP，那么在网络层讨论问题就显得很方便：</p>
 <p>eg：分组从源节点A发送到目的节点B，若中间必须经过一个或几个路由器（这表明A和B不在同一个网络上），则是间接交付。若不需要经过路由器（这表示A和B在同一个网络上），则是直接交付。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_6.png" srcset="/img/loading.gif" lazyload alt="分组在互联网中的传送" title="分组在互联网中的传送"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_6.png" srcset="/img/loading.gif" lazyload alt="分组在互联网中的传送" title="分组在互联网中的传送"></p>
 <p><strong>互联网可以由多种异构网络互联组成</strong>（卫星链路、无线局域网、等等）</p>
 <p>简化IP数据报就在网络层中传送，省略路由器之间的网络与连接在这些网络上的无关主机：</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_7.png" srcset="/img/loading.gif" lazyload alt="源主机H1向目的主机H2发送分组" title="源主机H1向目的主机H2发送分组"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_7.png" srcset="/img/loading.gif" lazyload alt="源主机H1向目的主机H2发送分组" title="源主机H1向目的主机H2发送分组"></p>
 <p>分组在传送途中的每一次转发都称为一“<strong>跳</strong>(hop)”，在路由器转发分组时也常常使用“<strong>下一跳</strong>(next hop)”的说法。上述例子中，前5跳都是间接交付，只有最后一跳是直接交付。</p>
 <h3 id="4-2-2-IP地址"><a href="#4-2-2-IP地址" class="headerlink" title="4.2.2 IP地址"></a>4.2.2 IP地址</h3><h4 id="1-IP地址及其表示方法"><a href="#1-IP地址及其表示方法" class="headerlink" title="1. IP地址及其表示方法"></a>1. IP地址及其表示方法</h4><p>IP地址是给连接到互联网上的每一台主机或路由器的<strong>每一个接口</strong>，分配一个全世界范围内是唯一的32位的标识符。IP地址的结构可以使我们在互联网上很方便进行寻址。IP地址由<strong>互联网名字和数字分配机构ICANN</strong>进行分配。</p>
-<p>IP地址<strong>点分十进制记法</strong><br><img src="https://blog.healthycal.top/img_out/net/net_4_8.png" srcset="/img/loading.gif" lazyload alt="采用点分十进制记法能够提高可读性" title="采用点分十进制记法能够提高可读性"></p>
+<p>IP地址<strong>点分十进制记法</strong><br><img src="https://blog.yoobit.cn/img_out/net/net_4_8.png" srcset="/img/loading.gif" lazyload alt="采用点分十进制记法能够提高可读性" title="采用点分十进制记法能够提高可读性"></p>
 <p>32位的IP地址采用两级结构，由两个字段组成。第一个字段是<strong>网络号</strong>，标志主机或路由器所连接到的网络。一个网络号在整个互联网范围内必须是唯一的。第二个字段是<strong>主机号</strong>，它标志该主机（路由器）。一个主机号在所连接的网络（即网络号指明的网络中）中必须是唯一的。</p>
 <p>由此可见，一个IP地址在整个互联网范围内是唯一的。</p>
 <p>IP地址可以记为：</p>
 <pre><code class="hljs">IP地址 ::=&#123;&lt;网络号&gt;,&lt;主机号&gt;&#125;
 </code></pre>
-<p>“::=”表示“<strong>定义为</strong>”<br><img src="https://blog.healthycal.top/img_out/net/net_4_9.png" srcset="/img/loading.gif" lazyload alt="IP地址中的网络号和主机号字段" title="IP地址中的网络号和主机号字段"></p>
+<p>“::=”表示“<strong>定义为</strong>”<br><img src="https://blog.yoobit.cn/img_out/net/net_4_9.png" srcset="/img/loading.gif" lazyload alt="IP地址中的网络号和主机号字段" title="IP地址中的网络号和主机号字段"></p>
 <p>当我们看到一个IP地址时，怎么知道它的网络号的位数n是多少？</p>
-<h4 id="2-分类的IP地址"><a href="#2-分类的IP地址" class="headerlink" title="2.分类的IP地址"></a>2.分类的IP地址</h4><p><img src="https://blog.healthycal.top/img_out/net/net_4_10.png" srcset="/img/loading.gif" lazyload alt="分类的IP地址及各类地址所占的比例" title="分类的IP地址及各类地址所占的比例"></p>
+<h4 id="2-分类的IP地址"><a href="#2-分类的IP地址" class="headerlink" title="2.分类的IP地址"></a>2.分类的IP地址</h4><p><img src="https://blog.yoobit.cn/img_out/net/net_4_10.png" srcset="/img/loading.gif" lazyload alt="分类的IP地址及各类地址所占的比例" title="分类的IP地址及各类地址所占的比例"></p>
 <p>例如：10000000 00001110 00100011 00000111 这是一个B类地址，前16位是网络号，后16位是主机号</p>
 <table>
 <thead>
@@ -447,7 +447,7 @@
 <pre><code class="hljs">IP地址 ::=&#123;&lt;网络前缀&gt;,&lt;主机号&gt;&#125;
 </code></pre>
 <p>这里区别最大是网络前缀的位数n不是固定的数，而是可以在0~32之间选取任意的值。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_11.png" srcset="/img/loading.gif" lazyload alt="CIDR表示的IP地址" title="CIDR表示的IP地址"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_11.png" srcset="/img/loading.gif" lazyload alt="CIDR表示的IP地址" title="CIDR表示的IP地址"></p>
 <p>CIDR采用<strong>斜线记法</strong>，或称CIDR记法，即在IP地址后加上斜线“/”，斜线后面就是网络前缀所占位数。</p>
 <p>e.g. 128.14.35.7/20 二进制IP地址前20位是网络前缀，后12位是主机号</p>
 <p>(2)<strong>地址块</strong></p>
@@ -486,7 +486,7 @@
 <p>地址掩码又称<strong>子网掩码</strong>。在CIDR记法中，斜线后面的数字就是地址掩码中1的个数。e.g. /20地址块的地址掩码是:11111111 11111111 11110000 00000000。这个掩码用CIDR记法表示就是255.255.240.0/20</p>
 <p>将二进制IP地址和地址掩码进行<strong>按位AND</strong>运算，即可得出网络地址。</p>
 <p>AND运算就是逻辑乘法运算，即：1 AND 1 = 1, 1 AND 0 = 0, 0 AND 0 = 0 。</p>
-<p>e.g. IP地址是128.14.35.7/20<br><img src="https://blog.healthycal.top/img_out/net/net_4_12.png" srcset="/img/loading.gif" lazyload alt="从IP地址算出网络地址" title="从IP地址算出网络地址"></p>
+<p>e.g. IP地址是128.14.35.7/20<br><img src="https://blog.yoobit.cn/img_out/net/net_4_12.png" srcset="/img/loading.gif" lazyload alt="从IP地址算出网络地址" title="从IP地址算出网络地址"></p>
 <p>从上面运算得到： IP地址127.14.35.7/20 所在的网络地址是 127.14.32.0/20</p>
 <p>CIDR地址中有三个特殊地址块：</p>
 <ol>
@@ -496,7 +496,7 @@
 </ol>
 <p>CIDR有一个好处就是可以更有效分配IP地址空间。</p>
 <p>一个大的CIDR地址块中往往包含很多小地址块，所以在路由器的转发表中就利用较大的一个CIDR地址块来代替许多小的地址块，这种方法称为<strong>路由聚合</strong>。在从大的地址块找到小的地址块，再找到最终IP地址。大大压缩了转发表所占空间，减少了查找转发表所需时间。</p>
-<p>例：<br><img src="https://blog.healthycal.top/img_out/net/net_4_13.png" srcset="/img/loading.gif" lazyload alt="CIDR地址块划分举例" title="CIDR地址块划分举例"></p>
+<p>例：<br><img src="https://blog.yoobit.cn/img_out/net/net_4_13.png" srcset="/img/loading.gif" lazyload alt="CIDR地址块划分举例" title="CIDR地址块划分举例"></p>
 <p>ISP拥有地址块206.0.64.0/18。某大学需要800IP地址，ISP分配一个地址块206.0.64.0/22，包括1024（即$2^{10}$）个地址，占该ISP拥有的地址空间的1/16。</p>
 <p>ISP拥有地址块：<br><strong>11001110 00000000 01</strong>000100 00000000</p>
 <p>大学拥有地址块：<br><strong>11001110 00000000 010001</strong>00 00000000<br>可清晰看出大学可分配$2^{10}$个地址</p>
@@ -513,7 +513,7 @@
 <li>一个网络或子网是指具有相同网络前缀的主机的集合，因此，<strong>用转发器或交换机连接起来的若干个局域网仍为一个网络</strong>，因为这些局域网都具有同样的网络前缀，具有不同网络前缀的局域网必须使用路由器进行互联。</li>
 <li>在IP地址中，所有分配到网络前缀的网络都是平等的。</li>
 </ol>
-<p>e.g.<br><img src="https://blog.healthycal.top/img_out/net/net_4_14.png" srcset="/img/loading.gif" lazyload alt="需要IP地址的地方用小圆圈表示" title="需要IP地址的地方用小圆圈表示"></p>
+<p>e.g.<br><img src="https://blog.yoobit.cn/img_out/net/net_4_14.png" srcset="/img/loading.gif" lazyload alt="需要IP地址的地方用小圆圈表示" title="需要IP地址的地方用小圆圈表示"></p>
 <ul>
 <li>在同一个局域网上的主机或路由器的IP地址中的<strong>网络前缀必须是同样的</strong>，即必须具有同样的网络号。</li>
 <li>图中的网络地址（用粗体字加下划线表示）里面的主机号必定是全0。</li>
@@ -524,13 +524,13 @@
 </ul>
 <h3 id="4-2-3-IP地址与MAC地址"><a href="#4-2-3-IP地址与MAC地址" class="headerlink" title="4.2.3 IP地址与MAC地址"></a>4.2.3 IP地址与MAC地址</h3><p>MAC地址固化在网卡上的ROM中，因此常常将MAC地址称为<strong>硬件地址</strong>或<strong>物理地址</strong>。IP地址属于虚拟地址、软件地址或逻辑地址此类。</p>
 <p>从层次上看，<strong>MAC地址是数据链路层使用的地址</strong>，而<strong>IP地址是网络层和以上各层使用的地址，是一种逻辑地址</strong>（称IP地址位逻辑地址是因为IP地址是用软件实现的）。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_15.png" srcset="/img/loading.gif" lazyload alt="IP地址与MAC地址的区别" title="IP地址与MAC地址的区别"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_15.png" srcset="/img/loading.gif" lazyload alt="IP地址与MAC地址的区别" title="IP地址与MAC地址的区别"></p>
 <p>发送数据时，数据从高层下到低层，然后才到通信链路上传输。使用IP地址的IP数据包交给数据链路层后被封装成MAC帧。MAC帧在传送时使用的源地址和目的地址都是MAC地址，这两个MAC地址都写在MAC帧的首部中。</p>
 <p>通信链路上的设备（主机或路由器）在收到MAC帧是，根据首部中MAC地址决定收下或丢弃。只有在剥去MAC帧的首部和尾部后把MAC层的数据上交给网络层，网络层在IP数据包的首部中找到源IP地址和目的IP地址。</p>
 <p>IP地址放在IP数据报的首部，MAC地址放在MAC帧的首部。在网络层和网络层以上使用的是IP地址，而数据链路层及以下使用的是MAC地址。当IP数据包插入到数据链路层的MAC帧以后，整个的IP数据包就成为MAC帧的数据，因而在数据链路层看不见数据包的IP地址。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_16.png" srcset="/img/loading.gif" lazyload alt="从不同层次上看IP地址和MAC地址" title="从不同层次上看IP地址和MAC地址"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_16.png" srcset="/img/loading.gif" lazyload alt="从不同层次上看IP地址和MAC地址" title="从不同层次上看IP地址和MAC地址"></p>
 <p>上图中两个路由器R1、R2将三个局域网互连起来，主机H1要与H2通信。通信路径为：H1-&gt;R1转发-&gt;R2转发-&gt;H2。因为R1同时连接到两个局域网上，因此它有两个MAC地址，即MAC3、MAC4，R2同理。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_16_b4.png" srcset="/img/loading.gif" lazyload alt="图4-16（b）中不同层次、不同区间的源地址和目的地址" title="图4-16（b）中不同层次、不同区间的源地址和目的地址"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_16_b4.png" srcset="/img/loading.gif" lazyload alt="图4-16（b）中不同层次、不同区间的源地址和目的地址" title="图4-16（b）中不同层次、不同区间的源地址和目的地址"></p>
 <p>强调：</p>
 <ol>
 <li><strong>在IP层抽象的互联网上只能看到IP数据包</strong>。</li>
@@ -539,13 +539,13 @@
 <li><strong>IP层抽象的互联网屏蔽了下层的MAC地址体系不同等复杂的细节</strong>。只要我们在网络层上讨论问题，就能够使用<strong>统一、抽象</strong>的IP地址研究主机和主机或路由器之间的通信。</li>
 </ol>
 <h3 id="4-2-4-地址解析协议ARP"><a href="#4-2-4-地址解析协议ARP" class="headerlink" title="4.2.4 地址解析协议ARP"></a>4.2.4 地址解析协议ARP</h3><p>ARP协议是为了解决知道机器（主机或路由器）的IP地址，再找出相应的MAC地址。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_17.png" srcset="/img/loading.gif" lazyload alt="协议ARP的作用" title="协议ARP的作用"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_17.png" srcset="/img/loading.gif" lazyload alt="协议ARP的作用" title="协议ARP的作用"></p>
 <p>网络层使用的是IP地址，在实际的网络链路上传送数据帧时，使用的还是链路层的MAC地址。</p>
 <p>由于IP地址与MAC地址各式不同不存在简单映射关系，同时在一个网络上经常有新主机加入或撤走一些主机，更换网络适配器也会使主机的MAC地址发生改变。</p>
 <p><strong>地址解析协议ARP</strong>解决这个问题的方法是在主机的<code>ARP高速缓存(ARP cache)</code>中存放一个IP地址到MAC地址的映射表，并且这个映射表还经常动态更新（新增或超时删除）。</p>
 <p>e.g. 当主机A要向本局域网内主机B发送IP数据报时，在ARP高速缓存中查询是否有B的IP地址。</p>
 <p>如有，则在ARP高速缓存中找到对应的MAC地址，再把这个MAC地址写入MAC帧中，通过局域网发生至此MAC地址。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_18.png" srcset="/img/loading.gif" lazyload alt="地址解析协议ARP的工作原理" title="地址解析协议ARP的工作原理"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_18.png" srcset="/img/loading.gif" lazyload alt="地址解析协议ARP的工作原理" title="地址解析协议ARP的工作原理"></p>
 <p>若无，则按以下步骤查询：</p>
 <ol>
 <li>ARP进程再本局域网上广播一个ARP请求分组。</li>
@@ -559,7 +559,7 @@
 <p>注意，ARP用于解决同一个局域网上的主机或路由器的IP地址和MAC地址的映射问题，如果要找的主机和源主机不在同一个局域网上，就需要依次转发如图4-16。</p>
 </blockquote>
 <p>从IP地址到MAC地址的解析是自动进行的，主机的用户对这种地址解析过程是不知道的。</p>
-<p>使用ARP四种典型情况：<br><img src="https://blog.healthycal.top/img_out/net/net_4_19.png" srcset="/img/loading.gif" lazyload alt="使用ARP的四种典型情况" title="使用ARP的四种典型情况"></p>
+<p>使用ARP四种典型情况：<br><img src="https://blog.yoobit.cn/img_out/net/net_4_19.png" srcset="/img/loading.gif" lazyload alt="使用ARP的四种典型情况" title="使用ARP的四种典型情况"></p>
 <ol>
 <li>发送方是主机如H1，要把IP数据包发给同一个网络的另一个主机H2，此时H1发送ARP请求分组，在N1上广播，找到目的主机H2的MAC地址。</li>
 <li>发送方是主机如H1，要发送给另一个网络的一台主机H3，此时H1发送ARP请求分组，在N1上广播，找到N1的一个路由器R1的MAC地址，剩下工作由R1完成，完成3. 或 4.</li>
@@ -571,7 +571,7 @@
 <blockquote>
 <p>因为各种网络使用不同的MAC地址，如需令这些异构网络相互通信必须<strong>进行复杂的MAC地址转换工作</strong>，由用户或用户主机来完成几乎是不可能的事。IP编址将连接到互联网的主机之间的通信就像连接在同一个网络上一样简单方便，即使需要多次调用ARP来找到MAC地址，这个过程也是计算机软件自动进行的，对用户来说是看不见的。</p>
 </blockquote>
-<h3 id="4-2-5-IP数据报的格式"><a href="#4-2-5-IP数据报的格式" class="headerlink" title="4.2.5 IP数据报的格式"></a>4.2.5 IP数据报的格式</h3><p>协议IP的标准中，描述首部格式的宽度是32位，即4个字节。<br><img src="https://blog.healthycal.top/img_out/net/net_4_20.png" srcset="/img/loading.gif" lazyload alt="IP数据报的格式" title="IP数据报的格式"></p>
+<h3 id="4-2-5-IP数据报的格式"><a href="#4-2-5-IP数据报的格式" class="headerlink" title="4.2.5 IP数据报的格式"></a>4.2.5 IP数据报的格式</h3><p>协议IP的标准中，描述首部格式的宽度是32位，即4个字节。<br><img src="https://blog.yoobit.cn/img_out/net/net_4_20.png" srcset="/img/loading.gif" lazyload alt="IP数据报的格式" title="IP数据报的格式"></p>
 <p>数据包由首部和数据两部分组成，首部前一部分是<strong>固定的</strong>（20字节），是所有IP数据包必须具有的，后部分是<strong>可选字段</strong>其长度是可变的（使用较少）。</p>
 <h4 id="1-IP数据报首部的固定部分中的各字段"><a href="#1-IP数据报首部的固定部分中的各字段" class="headerlink" title="1.IP数据报首部的固定部分中的各字段"></a>1.IP数据报首部的固定部分中的各字段</h4><ol>
 <li><strong>版本</strong> 占4位，指协议IP的版本，这里讨论的是IPv4</li>
@@ -584,10 +584,10 @@
 <li>中间位<code>DF(Don&#39;t Fragment)</code>,意思是<code>不能分片</code>,DF=0时才允许分片。</li>
 </ul>
 </li>
-<li><strong>片偏移</strong> 占13位。指：较长的分组分片后，某片在原分组中的相对位置。片偏移以8个字节位偏移单位。意味着，除最后一个数据报片外，其他每个分片的长度一定是8个字节（64位）的整数倍。<br> e.g. 一个数据包总长度为3820字节，数据部分长度3800字节，需分片1420字节数据报片。分成3个数据报片，长度分别为1400，1400，1000字节。<br> <img src="https://blog.healthycal.top/img_out/net/net_4_21.png" srcset="/img/loading.gif" lazyload alt="数据报的分片举例" title="数据报的分片举例"><br> 标识字段<code>12345</code>是任意给定的。<br> <img src="https://blog.healthycal.top/img_out/net/net_4_21_b5.png" srcset="/img/loading.gif" lazyload alt="IP数据报首部中与分片有关的字段中的数值" title="IP数据报首部中与分片有关的字段中的数值"><br> 假定数据报片2在过某个网络时还需要进行分片，即划分为数据报片2-1（携带数据800字节）、数据报片2-2（携带数据600字节）。这两个数据报片的总长度、标识、MF、DF、片偏移分别为:820,12345,1,0,175; 620,12345,0,0,275。</li>
+<li><strong>片偏移</strong> 占13位。指：较长的分组分片后，某片在原分组中的相对位置。片偏移以8个字节位偏移单位。意味着，除最后一个数据报片外，其他每个分片的长度一定是8个字节（64位）的整数倍。<br> e.g. 一个数据包总长度为3820字节，数据部分长度3800字节，需分片1420字节数据报片。分成3个数据报片，长度分别为1400，1400，1000字节。<br> <img src="https://blog.yoobit.cn/img_out/net/net_4_21.png" srcset="/img/loading.gif" lazyload alt="数据报的分片举例" title="数据报的分片举例"><br> 标识字段<code>12345</code>是任意给定的。<br> <img src="https://blog.yoobit.cn/img_out/net/net_4_21_b5.png" srcset="/img/loading.gif" lazyload alt="IP数据报首部中与分片有关的字段中的数值" title="IP数据报首部中与分片有关的字段中的数值"><br> 假定数据报片2在过某个网络时还需要进行分片，即划分为数据报片2-1（携带数据800字节）、数据报片2-2（携带数据600字节）。这两个数据报片的总长度、标识、MF、DF、片偏移分别为:820,12345,1,0,175; 620,12345,0,0,275。</li>
 <li><strong>生存时间</strong> 占8位，常用缩写TTL（Time To Live）,现功能为“跳数限制”。路由器每次转发数据报之前都把TTl值减1，若TTL减小到0，就丢弃这个数据报，不再转发。因此TTL单位是“跳数”。数据报在互联网中经过的路由器的最大数值是255，若把TTL的初始值设置为1，就表示这个数据报只能在本局域网中传送。</li>
 <li><strong>协议</strong> 占8位，指出此数据报所携带的数据使用何种协议，以便使目的主机IP层知道将数据部分上交给哪个协议进行处理。<br>常见协议和协议字段值：</li>
-<li><strong>首部检验和</strong> 占16位，这个字段<strong>只检验数据报的首部，不包括数据部分</strong>。将IP数据报首部划分为许多16位字的序列，并把检验和字段置0，用反码算术运算把所有16位字相加后，将得到的和的反码写入检验和字段。接收方收到数据报后，把首部所有的16位字再使用反码算术运算想加一次。将得到的和取反码，即得出接收方检验和的计算结果。若首部未发生任何变化，此结果必为0，于是就保留这个数据报；否则就认为出错，并丢弃。<br><img src="https://blog.healthycal.top/img_out/net/net_4_22.png" srcset="/img/loading.gif" lazyload alt="IP数据报首部检验和的计算过程" title="IP数据报首部检验和的计算过程"></li>
+<li><strong>首部检验和</strong> 占16位，这个字段<strong>只检验数据报的首部，不包括数据部分</strong>。将IP数据报首部划分为许多16位字的序列，并把检验和字段置0，用反码算术运算把所有16位字相加后，将得到的和的反码写入检验和字段。接收方收到数据报后，把首部所有的16位字再使用反码算术运算想加一次。将得到的和取反码，即得出接收方检验和的计算结果。若首部未发生任何变化，此结果必为0，于是就保留这个数据报；否则就认为出错，并丢弃。<br><img src="https://blog.yoobit.cn/img_out/net/net_4_22.png" srcset="/img/loading.gif" lazyload alt="IP数据报首部检验和的计算过程" title="IP数据报首部检验和的计算过程"></li>
 <li><strong>源地址</strong> 占32位，发送IP数据报主机的IP地址。</li>
 <li><strong>目标地址</strong> 占32位，接受IP数据报主机的IP地址。</li>
 </ol>
@@ -599,11 +599,11 @@
 <p>路由器不是直接查找目的主机，而是先查找目的网络（网络前缀），找到目的网络后就把分组在这个网络上直接交付目的主机。从而大大减少压缩转发表的大小。加速分组在路由器中的转发，这就是基于重点的转发过程。</p>
 <p>路由器收到转发分组后，查询出下一跳路由器的IP地址后，通过ARP将路由器的MAC地址放在链路层MAC帧的首部，然后传送给下一个路由器的链路层，下一跳再取出MAC帧的数据部分，交给网络层。</p>
 <p>e.g.分组转发的过程</p>
-<p>三个子网通过两个路由器互联，H1发送一个分组，目的地址是128.1.2.132。目的主机是H2，讨论分组如何传递到目的主机。<br><img src="https://blog.healthycal.top/img_out/net/net_4_23.png" srcset="/img/loading.gif" lazyload alt="源主机H1向目的地址H2发送分组" title="源主机H1向目的地址H2发送分组"></p>
+<p>三个子网通过两个路由器互联，H1发送一个分组，目的地址是128.1.2.132。目的主机是H2，讨论分组如何传递到目的主机。<br><img src="https://blog.yoobit.cn/img_out/net/net_4_23.png" srcset="/img/loading.gif" lazyload alt="源主机H1向目的地址H2发送分组" title="源主机H1向目的地址H2发送分组"></p>
 <ol>
 <li>H1先将发送分组的目的地址和本网络N1的子网掩码按位AND运算，得出运算结果。如果等于N1前缀，目的主机就连接在本网络上，否则发送分组至R1，由R1完成后续任务。</li>
 <li>由于采用CIDR记法，转发表给出的都是网络前缀，没有明显给出子网掩码（/后的数字对应就是子网掩码）。例如/26的子网掩码就是点分十进制的255.255.255.192。</li>
-<li>发送分组目的地址是128.1.2.132，本网络掩码是26个1，后面有6个0。<br> <img src="https://blog.healthycal.top/img_out/net/net_4_24.png" srcset="/img/loading.gif" lazyload alt="目的地址和本网络的子网掩码按位进行AND运算" title="目的地址和本网络的子网掩码按位进行AND运算"><br> 按位AND运算结果是128.1.2.128，不等于本网络N1前缀，说明目的主机没有连接在本网络上。源主机H1必须发送分组给路由器R1，让R1根据其转发表来进行处理。</li>
+<li>发送分组目的地址是128.1.2.132，本网络掩码是26个1，后面有6个0。<br> <img src="https://blog.yoobit.cn/img_out/net/net_4_24.png" srcset="/img/loading.gif" lazyload alt="目的地址和本网络的子网掩码按位进行AND运算" title="目的地址和本网络的子网掩码按位进行AND运算"><br> 按位AND运算结果是128.1.2.128，不等于本网络N1前缀，说明目的主机没有连接在本网络上。源主机H1必须发送分组给路由器R1，让R1根据其转发表来进行处理。</li>
 <li>R1部分转发表在4-23右上方给出了。转发表第一列就是“前缀匹配”，因此查找转发表的过程就是<code>寻找前缀匹配的过程</code>。现在检查R1转发表的第一行。源主机H1要发送的分组的目的地址是128.1.2.132.本网络128.1.2.192/26的前缀有26位，按位AND运算的结果是128.1.2.128/26.与第一行的前缀不匹配。</li>
 <li>检查R1转发表的第二行，结果是128.1.2.128/26，匹配。因此按照第二行指出的在N2上进行分组的直接交付（通过R1的接口1）.这时R1调用ARP，解析出目的主机H2的MAC地址，再封装成帧，直接交付连接在本网络N2上的目的主机H2。</li>
 <li>如果再按照同样方法，检查R1转发表中的第三行，得出不匹配的结果。</li>
@@ -611,10 +611,10 @@
 <p>从以上例子看出，查找转发表的过程就是逐行寻找前缀匹配的过程。</p>
 <h3 id="4-3-2-最长前缀匹配"><a href="#4-3-2-最长前缀匹配" class="headerlink" title="4.3.2 最长前缀匹配"></a>4.3.2 最长前缀匹配</h3><p>e.g. R1收到一个目的地址为128.1.24.1的分组，给出转发接口。</p>
 <p>公司B采用路由聚合，将三个子网的所有地址聚合为一个网络前缀128.1.24.0/22</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_25.png" srcset="/img/loading.gif" lazyload alt="分组交给路由器R1进行转发" title="分组交给路由器R1进行转发"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_25.png" srcset="/img/loading.gif" lazyload alt="分组交给路由器R1进行转发" title="分组交给路由器R1进行转发"></p>
 <p>将R1的分组目的地址分别和转发表第一第二行进行按位AND运算，结果都是匹配，那么那个正确？</p>
 <p>虽然两行计算后的前缀都匹配，但是左侧网络前缀中包含128.1.24.1，但右侧网络中不包含目的地址，只是因为128.1.24.0/22未说明是哪几个子网聚合而成的（并未包含128.1.24.0/24）。</p>
-<p><img src="https://blog.healthycal.top/img_out/net/net_4_26.png" srcset="/img/loading.gif" lazyload alt="公司A和B分到的前缀" title="公司A和B分到的前缀"></p>
+<p><img src="https://blog.yoobit.cn/img_out/net/net_4_26.png" srcset="/img/loading.gif" lazyload alt="公司A和B分到的前缀" title="公司A和B分到的前缀"></p>
 <p>进入R1的分组的目的地址128.1.24.1处于公司A的地址范围中，应通过接口1转发到公司A。</p>
 <p>总结：</p>
 <ul>
@@ -638,7 +638,7 @@
 </ol>
 </blockquote>
 <h3 id="4-3-3-使用二叉线索查找转发表"><a href="#4-3-3-使用二叉线索查找转发表" class="headerlink" title="4.3.3 使用二叉线索查找转发表"></a>4.3.3 使用二叉线索查找转发表</h3><p>为了更有效的查找，通常是把无分类编址的转发表存放在一种层次数据结构中，然后自上而下地按层次进行查找。这里最长用的是<code>二叉线索(binary trie)</code>，二叉线索中的各个路径就代表转发表中存放的各个地址。</p>
-<p>图4-27给出了5个IP地址，为了简化二叉线索的结构，先找出对应于每一个IP的<code>唯一前缀(unique prefix)</code>,所谓唯一前缀就是在表中所有IP地址中，该前缀是唯一的。这样在进行查找时，只要能够和唯一前缀相匹配就行了。<br><img src="https://blog.healthycal.top/img_out/net/net_4_27.png" srcset="/img/loading.gif" lazyload alt="用5个前缀构成的二叉线索" title="用5个前缀构成的二叉线索"></p>
+<p>图4-27给出了5个IP地址，为了简化二叉线索的结构，先找出对应于每一个IP的<code>唯一前缀(unique prefix)</code>,所谓唯一前缀就是在表中所有IP地址中，该前缀是唯一的。这样在进行查找时，只要能够和唯一前缀相匹配就行了。<br><img src="https://blog.yoobit.cn/img_out/net/net_4_27.png" srcset="/img/loading.gif" lazyload alt="用5个前缀构成的二叉线索" title="用5个前缀构成的二叉线索"></p>
 <blockquote>
 <p><em>二叉线索/二叉搜索树 见数据结构文章</em></p>
 </blockquote>
@@ -648,6 +648,13 @@
 <p>若匹配，就按下一跳的接口转发该分组，否则就丢弃该分组。</p>
 <p>总之，二叉线索只是提供了一种可以快速在转发表中找到匹配叶节点的机制。但这个是否和网络前缀匹配，还要和子网掩码进行一次逻辑AND运算。</p>
 <p>为了提高二叉线索的查找速度，广泛采用了各种<strong>压缩技术</strong>，例如在图4-27的最后两个地址，最前面4位都是1011，因此，只要一个地址的前4位是1011，就可以跳过前四位（即压缩了4个层次）而直接从第5位开始比较。这样就可以减少查找的时间。</p>
+<h2 id="4-4-网际控制报文协议ICMP"><a href="#4-4-网际控制报文协议ICMP" class="headerlink" title="4.4 网际控制报文协议ICMP"></a>4.4 网际控制报文协议ICMP</h2><p>因特网控制报文协议<code>ICMP（Internet Control Message Protocol）</code>是一个差错报告机制，是TCP/IP协议簇中的一个重要子协议，通常被IP层或更高层协议（TCP或UDP）使用，属于网络层协议，主要用于在IP主机和路由器之间传递控制消息，用于报告主机是否可达、路由是否可用等。这些控制消息虽然并不传输用户数据，但是对于收集各种网络信息、诊断和排除各种网络故障以及用户数据的传递具有至关重要的作用。</p>
+<p><strong>为什么需要ICMP？</strong> 为了更有效地转发IP数据报和提高交付机会。</p>
+<p>在数据传输的过程中，IP提供尽力而为的服务，指为了把数据包发送到目的地址尽最大努力。它并不对目的主机是否收到数据包进行验证，无法进行流量控制和差错控制。因此在数据包传输过程中，产生各种错误在所难免。为了更有效地转发IP数据包和提高数据包交付成功的机会，ICMP应运而生。使用ICMP，当网络中数据包传输出现问题时，主机或设备就会向上层协议报告差错情况和提供有关异常情况的报告，使得上层协议能够通过自己的差错控制程序来判断通信是否正确，以进行流量控制和差错控制，从而保证服务质量。</p>
+<p>ICMP是IP层协议，ICMP报文作为IP层数据报的数据，加上数据报的首部，组成IP数据报发送出去。也就是一种特殊的IP数据报。</p>
+<p><img src="" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-4-1-ICMP报文的种类"><a href="#4-4-1-ICMP报文的种类" class="headerlink" title="4.4.1 ICMP报文的种类"></a>4.4.1 ICMP报文的种类</h3><p>有两种，即<strong>ICMP差错报告报文</strong>和<strong>ICMP询问报文</strong>。</p>
+<p>ICMP报文前4个字节是统一格式，同三个字段：类型、代码和检验和，接着4个字段与ICMP类型有关。最后是数据字段，长度取决于ICMP的类型。</p>
 
                 
               </div>
@@ -705,7 +712,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>计算机网络</div>
-      <div>https://blog.healthycal.top/2022/11/11/计算机网络/</div>
+      <div>https://blog.yoobit.cn/2022/11/11/计算机网络/</div>
     </div>
     <div class="license-meta">
       
