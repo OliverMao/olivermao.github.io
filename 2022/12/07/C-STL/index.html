@@ -16,13 +16,15 @@
   <meta name="author" content="Oliver Mao">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="第一章 STL概述1.1 STL是什么STL(Standard Template Library)，标准模板库 STL主要包含容器、算法和迭代器三大部分。  容器包含了绝大多数数据结构，如数组、链表、队列、堆、栈、树等。 算法包含了诸如增删改查排序等系统函数 迭代器类似于指针，通过它的有序移动把容器中的元素与算法关联起来，是实现所有STL功能的基础所在。  常用STL包含文件    索引 功能 包">
+<meta property="og:type" content="article">
 <meta property="og:title" content="C++ STL">
 <meta property="og:url" content="https://blog.yoobit.cn/2022/12/07/C-STL/index.html">
 <meta property="og:site_name" content="YooBit&#39;s Blog">
+<meta property="og:description" content="第一章 STL概述1.1 STL是什么STL(Standard Template Library)，标准模板库 STL主要包含容器、算法和迭代器三大部分。  容器包含了绝大多数数据结构，如数组、链表、队列、堆、栈、树等。 算法包含了诸如增删改查排序等系统函数 迭代器类似于指针，通过它的有序移动把容器中的元素与算法关联起来，是实现所有STL功能的基础所在。  常用STL包含文件    索引 功能 包">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-07T09:17:34.000Z">
-<meta property="article:modified_time" content="2022-12-07T09:17:34.544Z">
+<meta property="article:modified_time" content="2022-12-07T14:29:40.480Z">
 <meta property="article:author" content="Oliver Mao">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          3.6k 字
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          1 分钟
+          31 分钟
         
       </span>
     
@@ -270,7 +272,146 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="第一章-STL概述"><a href="#第一章-STL概述" class="headerlink" title="第一章 STL概述"></a>第一章 STL概述</h1><h2 id="1-1-STL是什么"><a href="#1-1-STL是什么" class="headerlink" title="1.1 STL是什么"></a>1.1 STL是什么</h2><p><strong>STL</strong>(Standard Template Library)，标准模板库</p>
+<p>STL主要包含容器、算法和迭代器三大部分。</p>
+<ol>
+<li>容器<br>包含了绝大多数数据结构，如数组、链表、队列、堆、栈、树等。</li>
+<li>算法<br>包含了诸如增删改查排序等系统函数</li>
+<li>迭代器<br>类似于指针，通过它的有序移动把容器中的元素与算法关联起来，是实现所有STL功能的基础所在。</li>
+</ol>
+<p>常用STL包含文件</p>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>功能</th>
+<th>包含文件</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>迭代器</td>
+<td>#include<iterator></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>输入输出流</td>
+<td>#include<iostream></td>
+<td>标准输入输出流</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<fstream></td>
+<td>文件输入输出流</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<sstream></td>
+<td>字符串输入输出流</td>
+</tr>
+<tr>
+<td>3</td>
+<td>字符串</td>
+<td>#include<string></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>函数对象</td>
+<td>#include<functional></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>通用容器</td>
+<td>#include<vector></td>
+<td>向量容器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<deque></td>
+<td>双端队列</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<list></td>
+<td>链表容器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<query></td>
+<td>队列、优先队列</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<stack></td>
+<td>堆栈</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<set></td>
+<td>集合、多集合、位集合</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>#include<map></td>
+<td>映射、多映射</td>
+</tr>
+<tr>
+<td>6</td>
+<td>通用算法</td>
+<td>#include<algorithm></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>数值算法</td>
+<td>#include<numeric></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>STL的包含文件都不加拓展名，以便与C语言风格的“.h”头文件相区别</p>
+<h2 id="1-2-命名空间"><a href="#1-2-命名空间" class="headerlink" title="1.2 命名空间"></a>1.2 命名空间</h2><p>STL程序中一般使用<code>using namespace std;</code>。</p>
+<p>在 C++中,名称可以是变量、函数、结构、枚举以及类和结构的成员。随着工程的增大,名称相互冲突的可能性也将增加。使用多个厂商的类库时,可能导致名称冲突。例如两个库可能都定义了名为 func 的函数,但定义的方式不兼容,那么在应用中如何应用某个具体的func函数呢?C++提出了 namespace 命名空间解决方法,只要再加一层封装就可以了。</p>
+<p>【例】</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">namespace</span> mycompany&#123;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello,this is my company&quot;</span>);<br>    &#125;<br>&#125;;<br><span class="hljs-keyword">namespace</span> yourcompany&#123;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello,this is your company&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> mycompany;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc,<span class="hljs-type">char</span> *argv[])</span></span>&#123;<br>    <span class="hljs-built_in">func</span>();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    yourcompany::<span class="hljs-built_in">func</span>();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>由于STL命名空间名称是std，因此要应用STL，必须包含<code>using namespace std;</code></p>
+<h1 id="第二章-模板"><a href="#第二章-模板" class="headerlink" title="第二章 模板"></a>第二章 模板</h1><p>模板提供通用的方法开发可重用的代码，即可创建参数化的C++类型。</p>
+<p>模板分为：函数模板、类模板。</p>
+<h2 id="2-1-traits-技术"><a href="#2-1-traits-技术" class="headerlink" title="2.1 traits 技术"></a>2.1 traits 技术</h2><p>traits中文意思是特性，提取不同类的共性，以便能统一处理。提取特性后用统一接口来包装。</p>
+<p>【例】</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CIntArray</span>&#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">10</span>];<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">CIntArray</span>()&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>            a[i]=i+<span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">GetSum</span><span class="hljs-params">(<span class="hljs-type">int</span> times)</span></span>&#123;<br>        <span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>            sum+=a[i];<br>        &#125;<br>        cout&lt;&lt;sum&lt;&lt;endl;<br>        <span class="hljs-keyword">return</span> sum*times;<br>    &#125;;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CFloatArray</span>&#123;<br>    <span class="hljs-type">float</span> f[<span class="hljs-number">10</span>];<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">CFloatArray</span>()&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">10</span>;i++)&#123;<br>            f[i<span class="hljs-number">-1</span>]=<span class="hljs-number">1.0f</span>/i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">float</span> <span class="hljs-title">GetSum</span><span class="hljs-params">(<span class="hljs-type">float</span> times)</span></span>&#123;<br>        <span class="hljs-type">float</span> sum=<span class="hljs-number">0.0f</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>            sum+=f[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum*times;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    CIntArray intary;<br>    CFloatArray fltary;<br>    cout&lt;&lt;<span class="hljs-string">&quot;整型数组和3倍是：&quot;</span>&lt;&lt;intary.<span class="hljs-built_in">GetSum</span>(<span class="hljs-number">3</span>)&lt;&lt;endl;<br>    cout&lt;&lt;<span class="hljs-string">&quot;浮点数组和3.2倍是：&quot;</span>&lt;&lt;fltary.<span class="hljs-built_in">GetSum</span>(<span class="hljs-number">3.2f</span>)&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述代码功能是把整型或浮点型数组的和乘以相应倍数并输出。能否使用一个类的接口函数完成上述功能？</p>
+<p>使用类CApply</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CApply</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">float</span> <span class="hljs-title">GetSum</span><span class="hljs-params">(T &amp;t,<span class="hljs-type">float</span> inpara)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> t.<span class="hljs-built_in">GetSum</span>(inpara);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>main函数变为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    CIntArray intary;<br>    CFloatArray fltary;<br>    CApply&lt;CIntArray&gt; c1;<br>    CApply&lt;CFloatArray&gt; c2;<br>    cout&lt;&lt;<span class="hljs-string">&quot;整型数组和3倍是：&quot;</span>&lt;&lt;c1.<span class="hljs-built_in">GetSum</span>(intary,<span class="hljs-number">3</span>)&lt;&lt;endl;<br>    cout&lt;&lt;<span class="hljs-string">&quot;浮点数组和3.2倍是：&quot;</span>&lt;&lt;c2.<span class="hljs-built_in">GetSum</span>(fltary,<span class="hljs-number">3.2f</span>)&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过模板类CApply接口函数实现了对整型数组及浮点数组类的操作。</p>
+<p>但有以下问题：CApply中GetSum把返回值固定成float，输入参数也固定成float，当int调用时，虽然结果上正确，但是不严谨。</p>
+<p>traits技术用来解决输入、输出参数类型的不同。</p>
+<p>步骤如下：</p>
+<ol>
+<li>定义基本模板类：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumTraits</span>&#123;<br>&#125;;<br></code></pre></td></tr></table></figure>
+NumTraits可以什么内容都不写，仅说明该类是一个模板类</li>
+<li>模板特化<br>针对CIntArray和CFloatArray，因此代码如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumTraits</span>&lt;CIntArray&gt;&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> resulttype;<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> inputpara;<br>&#125;;<br><br><span class="hljs-keyword">template</span>&lt;&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumTraits</span>&lt;CFloatArray&gt;&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-type">float</span> resulttype;<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-type">float</span> inputpara;<br>&#125;;<br></code></pre></td></tr></table></figure>
+根据CIntArray类中函数int GetSum(int times)，将返回值int类型重新定义成resulttype，把输入int类型重新定义成intputpara。float同理。<br>目的为编制模板类共同的调用接口做准备。</li>
+<li>统一模板调用类编制。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CApply</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    NumTraits&lt;T&gt;::<span class="hljs-function">resulttype <span class="hljs-title">GetSum</span><span class="hljs-params">(T&amp; obj,NumTraits&lt;T&gt;::inputpara in)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> obj.<span class="hljs-built_in">GetSum</span>(in);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+当模板参数代表CIntArray，该定义变为如下代码：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++">NumTraits&lt;CIntArray&gt;::<span class="hljs-function">resulttype <span class="hljs-title">GetSum</span><span class="hljs-params">(CIntArray &amp;obj,NumTraits&lt;CIntArray&gt;::inputpara in)</span></span><br></code></pre></td></tr></table></figure>
+为了简化CApply函数中定义形式，再次运用typedef进行定义，代码如下：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CApply</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> NumTraits&lt;T&gt;::resulttype result;<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> NumTraits&lt;T&gt;::inputpara input;<br>    <span class="hljs-function">result <span class="hljs-title">GetSum</span><span class="hljs-params">(T&amp; obj,input in)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> obj.<span class="hljs-built_in">GetSum</span>(in);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+</ol>
+
                 
               </div>
             
