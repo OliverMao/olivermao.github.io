@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.yoobit.cn/img_out/net/net_index.png">
 <meta property="article:published_time" content="2022-11-11T07:01:00.000Z">
-<meta property="article:modified_time" content="2022-11-23T10:39:36.757Z">
+<meta property="article:modified_time" content="2022-11-23T10:44:01.094Z">
 <meta property="article:author" content="Oliver Mao">
 <meta property="article:tag" content="文档">
 <meta property="article:tag" content="基础">
@@ -594,7 +594,7 @@
 <h4 id="2-IP数据报首部的可变部分"><a href="#2-IP数据报首部的可变部分" class="headerlink" title="2.IP数据报首部的可变部分"></a>2.IP数据报首部的可变部分</h4><pre><code class="hljs">首部可变部分就是一个选项字段，用来支持排错、测量以及安全等措施。长度可变取决于所选的项目，从1到40字节不等，有些选项项目需要1字节，有些选项项目需要多个字节，这些选项一个个拼接起来，中间不需要有分隔符。最后用全0的填充字段补齐位4字节的整数倍。
 增加可变部分增加了IP数据报的功能，同时增加了每个路由器处理数据报的开销，实际上这些选项很少使用，很多路由器都不考虑IP首部的选项字段。因此IPv6就把IP数据报的首部长度做成固定的了。
 </code></pre>
-<h2 id="4-3-IP层转发分组的过程"><a href="#4-3-IP层转发分组的过程" class="headerlink" title="4.3 IP层转发分组的过程"></a>4.3 IP层转发分组的过程</h2><h3 id="4-3-1-基于重点的转发"><a href="#4-3-1-基于重点的转发" class="headerlink" title="4.3.1 基于重点的转发"></a>4.3.1 基于重点的转发</h3><p>分组在互联网上传送和转发是基于分组首部中的目的地址的，因此这种转发方式称为<em><strong>基于终点的转发</strong></em>。</p>
+<h2 id="4-3-IP层转发分组的过程"><a href="#4-3-IP层转发分组的过程" class="headerlink" title="4.3 IP层转发分组的过程"></a>4.3 IP层转发分组的过程</h2><h3 id="4-3-1-基于终点的转发"><a href="#4-3-1-基于终点的转发" class="headerlink" title="4.3.1 基于终点的转发"></a>4.3.1 基于终点的转发</h3><p>分组在互联网上传送和转发是基于分组首部中的目的地址的，因此这种转发方式称为<em><strong>基于终点的转发</strong></em>。</p>
 <p>分组每到达一个路由器，就根据分组中的目的地址查找转发表，然后得知下一跳到哪个路由器。</p>
 <p>路由器不是直接查找目的主机，而是先查找目的网络（网络前缀），找到目的网络后就把分组在这个网络上直接交付目的主机。从而大大减少压缩转发表的大小。加速分组在路由器中的转发，这就是基于重点的转发过程。</p>
 <p>路由器收到转发分组后，查询出下一跳路由器的IP地址后，通过ARP将路由器的MAC地址放在链路层MAC帧的首部，然后传送给下一个路由器的链路层，下一跳再取出MAC帧的数据部分，交给网络层。</p>
