@@ -24,8 +24,15 @@
 <meta property="og:description" content="第二章 线程与进程重点  进程与线程进程与线程的基本概念；进程&#x2F;线程的状态与转换线程的实现：内核支持的线程，线程库支持的线程进程与线程的组织与控制进程间通信：共享内存，消息传递，管道  2.1 进程与线程2.1.1 进程的概念和特征1.进程的概念 进程控制块(Process Control Block,PCB):为使参与并发执行的每个程序（含数据）能独立运行，为之配置一个专门的数据结构。 系统利用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.5_01.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.7_01.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.7_02.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.7_03.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.8_01.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_01.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_02.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_03.jpg">
 <meta property="article:published_time" content="2022-11-24T14:59:53.000Z">
-<meta property="article:modified_time" content="2022-12-11T13:54:39.995Z">
+<meta property="article:modified_time" content="2022-12-12T13:47:49.830Z">
 <meta property="article:author" content="Oliver Mao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.5_01.jpg">
@@ -220,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          12k 字
         
       </span>
     
@@ -231,7 +238,7 @@
         
         
         
-          61 分钟
+          100 分钟
         
       </span>
     
@@ -507,9 +514,99 @@
 <p>从进程角度来看：生产者需先进行P(resource)再进行V(products)，消费者先进行P(products)再进行V(resource)。</p>
 <p>然后再考虑mutex互斥操作。</p>
 <p>若先进行生产者先进行P(mutex)操作，mutex=0，若发生进程切换，则会出现消费者进程阻塞，然后重新回到生产者进程，若resource资源变成-1，也就是产品占满了空闲缓冲区，这时生产者进程会进入阻塞队列。此时，两个进程都进入阻塞队列，发生死锁。</p>
-<p>故：互斥操作的P操作需要在同步操作之后。</p>
+<p>故：<em><strong>互斥操作的P操作需要在同步操作之后</strong></em>。</p>
 <p>代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore mutex=<span class="hljs-number">1</span>;<br>semaphore products=<span class="hljs-number">0</span>;<br>semaphore resource=n;<br><br>生产者()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        生产一个产品<br>        P(resource);<br>        P(mutex);<br>        把产品放入缓冲区;<br>        V(mutex);<br>        V(products);<br>    &#125;<br>&#125;<br><br>消费者()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(products);<br>        P(mutex);<br>        从缓冲区取出一个产品;<br>        V(mutex);<br>        V(resource);<br>        使用产品;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-7-多生产者多消费者模型"><a href="#2-2-7-多生产者多消费者模型" class="headerlink" title="2.2.7 多生产者多消费者模型"></a>2.2.7 多生产者多消费者模型</h3><p>【注意】：<em><strong>互斥操作的P操作需要在同步操作之后</strong></em>（P(mutex)需在同步P操作之后）</p>
+<p>桌子上有一只盘子，每次只能向其中放入一个水果。爸爸专向盘子中放苹果，妈妈专向盘子中放桥子，儿子专等着吃盘子中的橘子，女儿专等着吃盘子中的苹果。只有盘子空时，爸爸或妈妈才可向盘子中放一个水果。仅当盘子中有自己需要的水果时，儿子或女儿可以从盘子中取出水果。用PV操作实现上述过程。</p>
+<p>分析：</p>
+<ol>
+<li>互斥：对缓冲区（盘子）的使用是互斥的</li>
+<li>同步：<ul>
+<li>父亲将苹果放入盘子后，女儿才能取苹果</li>
+<li>母亲将橘子放入盘子后，儿子才能取橘子</li>
+<li>盘子为空时，父母才能放水果（儿子、女儿取水果后父母才能放）</li>
+</ul>
+</li>
+</ol>
+<p>分析图：</p>
+<p><img src="https://blog.yoobit.cn/img_out/system/system_2.2.7_01.jpg" srcset="/img/loading.gif" lazyload alt="多消费者生产者模型 分析图" title="多消费者生产者模型 分析图"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">//此时因为只有一个盘子所以盘子的数量可以起到互斥信号量mutex的作用（见代码后）</span><br>semaphore apple=<span class="hljs-number">0</span>;   <span class="hljs-comment">//盘子中苹果的数量</span><br>semaphore orenge=<span class="hljs-number">0</span>;  <span class="hljs-comment">//盘子中橘子的数量</span><br>semaphore plate=<span class="hljs-number">1</span>;   <span class="hljs-comment">//盘子的数量</span><br><br>father()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        生产苹果;<br>        P(plate);<br>        把苹果放入缓冲区;<br>        V(apple);<br>    &#125;<br>&#125;<br><br>mother()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        生产橘子;<br>        P(plate);<br>        把橘子放入缓冲区;<br>        V(orenge);<br>    &#125;<br>&#125;<br><br>son()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(orenge);<br>        拿橘子;<br>        V(plate);<br>        吃橘子;<br>    &#125;<br>&#125;<br><br>daughter()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(apple);<br>        拿苹果;<br>        V(plate);<br>        吃苹果;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><em><strong>如果缓冲区大小大于1，必须设置互斥信号量mutex</strong></em>，来保证互斥访问缓冲区</p>
+<p>【盘子为2的情况】：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore apple=<span class="hljs-number">0</span>;   <span class="hljs-comment">//盘子中苹果的数量</span><br>semaphore orenge=<span class="hljs-number">0</span>;  <span class="hljs-comment">//盘子中橘子的数量</span><br>semaphore plate=<span class="hljs-number">2</span>;   <span class="hljs-comment">//盘子的数量</span><br>semaphore mutex=<span class="hljs-number">1</span>;<br><br>father()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        生产苹果;<br>        P(plate);<br>        P(mutex);<br>        把苹果放入缓冲区;<br>        V(mutex);<br>        V(apple);<br>    &#125;<br>&#125;<br><br>mother()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        生产橘子;<br>        P(plate);<br>        P(mutex);<br>        把橘子放入缓冲区;<br>        V(mutex);<br>        V(orenge);<br>    &#125;<br>&#125;<br><br>son()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(orenge);<br>        P(mutex);<br>        拿橘子;<br>        V(mutex);<br>        V(plate);<br>        吃橘子;<br>    &#125;<br>&#125;<br><br>daughter()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(apple);<br>        P(mutex);<br>        拿苹果;<br>        V(mutex);<br>        V(plate);<br>        吃苹果;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>分析：分析多生产者-多消费者模型时候，需从“事件”的角度来考虑<br><img src="https://blog.yoobit.cn/img_out/system/system_2.2.7_02.jpg" srcset="/img/loading.gif" lazyload alt="多消费者生产者模型 以进程关系分析" title="多消费者生产者模型 以进程关系分析"></p>
+<p>将以上四对“进程行为的前后关系”抽象为一对“事件的前后关系”，也就是之前看到的，女儿和儿子对于盘子拿后父母才能继续放水果的关系。“盘子变空”事件要在“放入水果”事件之前。这样就可以只用一个信号量而不是4个信号量来解决了。<br><img src="https://blog.yoobit.cn/img_out/system/system_2.2.7_03.jpg" srcset="/img/loading.gif" lazyload alt="多消费者生产者模型 以事件关系分析" title="多消费者生产者模型 以事件关系分析"></p>
+<h3 id="2-2-8-抽烟者模型"><a href="#2-2-8-抽烟者模型" class="headerlink" title="2.2.8 抽烟者模型"></a>2.2.8 抽烟者模型</h3><p>假设一个系统有三个抽烟者进程和一个供应者进程。每个抽烟者不停地卷烟并抽掉它，但是要卷起并抽掉一支烟，抽烟者需要有三种材料:烟草、纸和胶水。三个抽烟者中，第一个拥有烟草、第二个拥有纸、第三个拥有胶水。供应者进程无限地提供三种材料，供应者每次将两种材料放桌子上，拥有剩下那种材料的抽烟者卷一根烟并抽掉它，并给供应者进程一个信号告诉完成了，供应者就会放另外两种材料再桌上，这个过程一直重复(让三个抽烟者轮流地抽烟)</p>
+<p>生产者分成三个组合，放置于桌子上（容量为1的缓冲区，互斥访问，根据上题可得不需要设置mutex）。</p>
+<p>关系：</p>
+<ol>
+<li>互斥：桌子</li>
+<li>同步：<ul>
+<li>桌子上有组合1，消费者1可用</li>
+<li>桌子上有组合2，消费者2可用</li>
+<li>桌子上有组合3，消费者3可用</li>
+<li>抽烟完成，生产者继续放组合</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://blog.yoobit.cn/img_out/system/system_2.2.8_01.jpg" srcset="/img/loading.gif" lazyload alt="抽烟者问题 分析图" title="抽烟者问题 分析图"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore offer1=<span class="hljs-number">0</span>;  <span class="hljs-comment">//桌上组合1的数量</span><br>semaphore offer2=<span class="hljs-number">0</span>;<br>semaphore offer3=<span class="hljs-number">0</span>;<br>semaphore finish=<span class="hljs-number">1</span>;  <span class="hljs-comment">//允许几人同时抽烟 类似于上题中盘子的数量</span><br><span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;             <span class="hljs-comment">//实现轮流抽烟</span><br><br>生产者()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(finish);<br>        <span class="hljs-keyword">if</span>(i==<span class="hljs-number">0</span>)&#123;<br>            V(offer1);<br>            将组合<span class="hljs-number">1</span>放在桌上;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i==<span class="hljs-number">1</span>)&#123;<br>            V(offer2);<br>            将组合<span class="hljs-number">2</span>放在桌上;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i==<span class="hljs-number">2</span>)&#123;<br>            V(offer3);<br>            将组合<span class="hljs-number">3</span>放在桌上;<br>        &#125;<br>        i = (i+<span class="hljs-number">1</span>)%<span class="hljs-number">3</span>;<br>    &#125;<br>&#125;<br><br>吸烟者<span class="hljs-number">1</span>()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(offer1);<br>        从桌上拿走组合<span class="hljs-number">1</span>，卷烟，抽;<br>        V(finish);<br>    &#125;<br>&#125;<br><br>吸烟者<span class="hljs-number">2</span>()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(offer2);<br>        从桌上拿走组合<span class="hljs-number">2</span>，卷烟，抽;<br>        V(finish);<br>    &#125;<br>&#125;<br><br>吸烟者<span class="hljs-number">3</span>()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(offer3);<br>        从桌上拿走组合<span class="hljs-number">3</span>，卷烟，抽;<br>        V(finish);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此题博客与教程中不同点在finish的初始值，教程中finish=0，故对于生产者的代码来说P操作要在V操作之后也就是在代码最后加入P操作。对于本博客，将finish看成桌子可容纳组合的数量，所以同前两题的思路，看分析图的顺序即可得到答案，也就是代码中P操作在V操作之前。</p>
+<blockquote>
+<p>前V后P针对的是信号量。也就是画分析图的时候，根据箭头方向来看前后。代码直接看分析图的顺序即可。</p>
+</blockquote>
+<p>若题目改成随机抽烟，则使用random函数即可。</p>
+<h3 id="2-2-9-读者-写者-模型"><a href="#2-2-9-读者-写者-模型" class="headerlink" title="2.2.9 读者-写者 模型"></a>2.2.9 读者-写者 模型</h3><p>有读者和写者两组并发进程，共享一个文件，当两个或两个以上的读进程同时访问共享数据时不会产生副作用，但若某个写进程和其他进程(读进程或写进程)同时访问共享数据时则可能导致数据不一致的错误。</p>
+<p>因此要求:</p>
+<ol>
+<li>允许多个读者可以同时对文件执行读操作</li>
+<li>只允许一个写者往文件中写信息;</li>
+<li>任一写者在完成写操作之前不允许其他读者或写者工作;</li>
+<li>写者执行写操作前，应让已有的读者和写者全部退出。</li>
+</ol>
+<p>题目分析：</p>
+<p>两类进程：读进程、写进程</p>
+<p>互斥关系：写进程-写进程；写进程-读进程。（读进程与读进程之间不互斥）</p>
+<p>因写进程与其他进程之间都互斥，设置互斥信号量rw(readAndWirte)。</p>
+<p>写进程访问共享文件前后需进行P(rw)与V(rw)加解锁操作。</p>
+<p>读进程同理。但是会存在一个问题，如何解决同时读的问题。</p>
+<p>解决方法是：设置一个int变量count，用来记录目前有几个读进程正在访问共享文件。同时为解决count变量的检查和赋值无法一气呵成的问题，加入mutex互斥变量（加解锁）来解决。</p>
+<p>最后此算法会造成写进程饥饿现象，也就是“读优先”，所以需再新增一个互斥信号量w，用来达成“读写公平”，达到相对公平的先来先服务。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore rw=<span class="hljs-number">1</span>;    <span class="hljs-comment">//用于实现对文件的互斥访问</span><br><span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;     <span class="hljs-comment">//记录当前有几个读进程正访问文件，实现同时读</span><br>semaphore mutex=<span class="hljs-number">1</span>; <span class="hljs-comment">//用于保证对count变量的互斥访问</span><br>semaphore w=<span class="hljs-number">1</span>;     <span class="hljs-comment">//用于保证“写优先”、“读写公平”</span><br><br>write()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(w);       <span class="hljs-comment">//加写锁，防止写操作一直阻塞在rw锁。</span><br>        p(rw);      <span class="hljs-comment">//加读写锁</span><br>        写文件;<br>        V(rw);<br>        V(w);<br>    &#125;<br>&#125;<br><br>read()&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(w);          <span class="hljs-comment">//加写锁，此时读写进程都会阻塞在此锁内。</span><br>        p(mutex);<br>        <span class="hljs-keyword">if</span>(count==<span class="hljs-number">0</span>)&#123;<br>            P(rw);     <span class="hljs-comment">//第一个访问的读进程需要对文件访问进行加锁</span><br>        &#125;<br>        count++;<br>        V(mutex);<br>        V(w);<br>        读文件;<br>        P(mutex);<br>        count--;<br>        <span class="hljs-keyword">if</span>(count==<span class="hljs-number">0</span>)&#123;    <span class="hljs-comment">//只要不是最后一个读进程就不需要关闭对文件的访问锁。</span><br>            V(rw);<br>        &#125;<br>        V(mutex);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-10-哲学家吃饭-模型"><a href="#2-2-10-哲学家吃饭-模型" class="headerlink" title="2.2.10 哲学家吃饭 模型"></a>2.2.10 哲学家吃饭 模型</h3><p>一张圆桌上坐着5名哲学家，每两个哲学家之间的桌上摆一根筷子，桌子的中间是一碗米饭。哲学家们倾注毕生的精力用于思考和进餐，哲学家在思考时，并不影响他人。只有当哲学家饥饿时，才试图拿起左、右两根筷子(一根一根地拿起)。如果筷子已在他人手上，则需等待。饥饿的哲学家只有同时拿起两根筷子才可以开始进餐，当进餐完毕后，放下筷子继续思考。<br><img src="https://blog.yoobit.cn/img_out/system/system_2.2.10_01.jpg" srcset="/img/loading.gif" lazyload alt="哲学家问题" title="哲学家问题"></p>
+<p>与生产者-消费者模型不同的点在于，哲学家吃饭模型中，每个哲学家需要同时使用两个临界资源（或多个），本题为两个筷子。故需要避免死锁出现。</p>
+<p><img src="https://blog.yoobit.cn/img_out/system/system_2.2.10_02.jpg" srcset="/img/loading.gif" lazyload alt="哲学家问题 死锁" title="哲学家问题 死锁"></p>
+<p>先设置一个筷子数组，对应哲学家左侧筷子。</p>
+<p>解决方案主要有三，</p>
+<p>其一：仅当一个哲学家左右两边筷子都可用时候才允许抓起筷子。也就是哲学家拿筷子的时候不仅给筷子加锁，需先加一个mutex互斥锁。防止拿筷子的途中被其他哲学家拿筷子。</p>
+<p><img src="https://blog.yoobit.cn/img_out/system/system_2.2.10_03.jpg" srcset="/img/loading.gif" lazyload alt="哲学家问题 解决方法" title="哲学家问题 解决方法"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore chopstick[<span class="hljs-number">5</span>]=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>&#125;<br>semaphore mutex=<span class="hljs-number">1</span>;<br><br>Pi()&#123;             <span class="hljs-comment">//第i号哲学家的进程</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        P(mutex);<br>        P(chopstick[i]);<br>        P(chopstick[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">5</span>]);<br>        V(mutex);<br>        吃饭;<br>        V(chopstick[i]);<br>        V(chopstick[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">5</span>]);<br>        思考;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-11-PV操作总结"><a href="#2-2-11-PV操作总结" class="headerlink" title="2.2.11 PV操作总结"></a>2.2.11 PV操作总结</h3><ol>
+<li>对于信号量，采用前V后P策略；</li>
+<li>信号量初始值</li>
+</ol>
+<ul>
+<li>互斥信号量例如mutex，<a href="./#2-2-3-%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6-PV%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5">初始值设置为1</a> <code>semaphore mutex=1</code>；</li>
+<li>同步信号量，<a href="./#2-2-4-%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6-PV%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5">设置为0</a>；例如进程1中A语句执行完进程2中B语句才可执行，设置<code>semaphore s=0</code>, <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C">semaphore s=<span class="hljs-number">0</span><br><br>进程<span class="hljs-number">1</span>()&#123;<br>    A;<br>    V(s);<br>&#125;<br><br>进程<span class="hljs-number">2</span>()&#123;<br>    P(s);<br>    B;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>临界资源<a href="./#2-2-6-%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98">有多少设置为多少</a>，例如5个盘子，设置<code>semaphore plate=5</code></li>
+</ul>
+<ol start="3">
+<li><a href="./#2-2-7-%E5%A4%9A%E7%94%9F%E4%BA%A7%E8%80%85%E5%A4%9A%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B">互斥操作的P操作需要在同步操作之后</a>（P(mutex)需在同步P操作之后）</li>
+<li>如果缓冲区（临界资源）大小大于1，必须设置互斥信号量mutex，来保证互斥访问缓冲区，否则不需要设置互斥信号量mutex</li>
+<li>在读者写者模型中，同时存在互斥与不互斥操作（读读可同时进行，而读写、写写互斥），可设置count计数，只对第一个读和最后一个读进行P、V加解rw读写进程锁，即可实现。同时为了防止“写饥饿”，需再设置一个w写锁，来实现相对公平的先来先服务。</li>
+<li>进程需要同时使用两个或多个临界资源时需要避免死锁。</li>
+</ol>
+
                 
               </div>
             
