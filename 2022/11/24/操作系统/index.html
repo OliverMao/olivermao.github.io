@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_01.jpg">
 <meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_02.jpg">
 <meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.10_03.jpg">
+<meta property="og:image" content="https://blog.yoobit.cn/img_out/system/system_3_03_01.jpg">
 <meta property="article:published_time" content="2022-11-24T14:59:53.000Z">
-<meta property="article:modified_time" content="2022-12-12T13:47:49.830Z">
+<meta property="article:modified_time" content="2022-12-14T06:18:39.497Z">
 <meta property="article:author" content="Oliver Mao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.yoobit.cn/img_out/system/system_2.2.5_01.jpg">
@@ -227,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          14k 字
         
       </span>
     
@@ -238,7 +239,7 @@
         
         
         
-          100 分钟
+          114 分钟
         
       </span>
     
@@ -605,6 +606,181 @@
 <li>如果缓冲区（临界资源）大小大于1，必须设置互斥信号量mutex，来保证互斥访问缓冲区，否则不需要设置互斥信号量mutex</li>
 <li>在读者写者模型中，同时存在互斥与不互斥操作（读读可同时进行，而读写、写写互斥），可设置count计数，只对第一个读和最后一个读进行P、V加解rw读写进程锁，即可实现。同时为了防止“写饥饿”，需再设置一个w写锁，来实现相对公平的先来先服务。</li>
 <li>进程需要同时使用两个或多个临界资源时需要避免死锁。</li>
+</ol>
+<h1 id="第三章-死锁"><a href="#第三章-死锁" class="headerlink" title="第三章 死锁"></a>第三章 死锁</h1><h2 id="3-1-介绍死锁"><a href="#3-1-介绍死锁" class="headerlink" title="3.1 介绍死锁"></a>3.1 介绍死锁</h2><p>什么是死锁：</p>
+<blockquote>
+<p>各进程互相等待对方手里的资源，导致各进程都阻塞无法向前推进。</p>
+</blockquote>
+<p>死锁、饥饿、死循环的区别：</p>
+<ol>
+<li>死锁：至少是两个进程一起死锁，死锁进程处于阻塞态</li>
+<li>饥饿：可以只有一个进程饥饿，饥饿进程可能阻塞也可能就绪</li>
+<li>死循环：可能只有一个进程发生死循环，死循环的进程可上处理机</li>
+<li>死锁和饥饿是操作系统要解决的问题，死循环是应用程序员要解决的。</li>
+</ol>
+<p>死锁产生的必要条件：</p>
+<ol>
+<li>互斥条件：对必须互斥使用的资源的争抢才会导致死锁</li>
+<li>不剥夺条件：进程保持的资源只能是主动释放，不可强行剥夺</li>
+<li>请求和保持条件：保持着某些资源不放的同时，请求别的资源</li>
+<li>循环等待条件：<ul>
+<li>存在一种进程资源的循环等待链</li>
+<li>循环等待未必死锁，死锁一定有循环等待</li>
+</ul>
+</li>
+</ol>
+<p>什么时候会发生死锁：</p>
+<blockquote>
+<p>对不可剥夺资源的不合理分配，可能导致死锁</p>
+</blockquote>
+<p>死锁的处理策略：</p>
+<ol>
+<li>预防死锁：破坏死锁的四个必要条件</li>
+<li>避免死锁：避免系统进入不安全状态（<a href="./#3-3-2-%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95">银行家算法</a>）</li>
+<li>死锁的检测和解除：允许死锁发生，系统负责检测出死锁并解除。</li>
+</ol>
+<h2 id="3-2-预防死锁"><a href="#3-2-预防死锁" class="headerlink" title="3.2 预防死锁"></a>3.2 预防死锁</h2><ol>
+<li>破坏互斥条件：<ul>
+<li>将临界资源改造为可共享使用的资源（如SPOOLing技术）</li>
+<li>缺点：可行性不高，很多时候无法破坏互斥条件</li>
+</ul>
+</li>
+<li>破坏不剥夺条件：<ul>
+<li>方案一：申请的资源得不到满足时，立即释放拥有的所有资源</li>
+<li>方案二：申请的资源被其他进程占用时，由操作系统协助剥夺（考虑优先级）</li>
+<li>缺点：实现复杂；剥夺资源可能导致部分工作失效；反复申请和释放导致系统开销大；可能导致饥饿</li>
+</ul>
+</li>
+<li>破坏请求和保持条件：<ul>
+<li>运行前分配好所有需要的资源，之后一直保持</li>
+<li>缺点：资源利用率低；可能导致饥饿</li>
+</ul>
+</li>
+<li>破坏循环等待条件：<ul>
+<li>给资源编号，必须按编号从小到大的顺序申请资源</li>
+<li>缺点：不方便增加新设备；会导致资源浪费；用户编程麻烦</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-3-避免死锁-（银行家算法）"><a href="#3-3-避免死锁-（银行家算法）" class="headerlink" title="3.3 避免死锁 （银行家算法）"></a>3.3 避免死锁 （银行家算法）</h2><h3 id="3-3-1-安全序列与安全状态"><a href="#3-3-1-安全序列与安全状态" class="headerlink" title="3.3.1 安全序列与安全状态"></a>3.3.1 安全序列与安全状态</h3><p>安全序列：如果系统按照这种序列分配资源，则每个进程都能够顺利完成。</p>
+<p>只要能找到一个安全序列，系统就是安全状态。安全序列可能有多个。</p>
+<p>如果系统处于安全状态，就一定不会发生死锁。</p>
+<p>如果系统进入不安全状态，就有可能发生死锁。</p>
+<p>因此，在资源分配之前预先判断这次分配是否会导致系统进入不安全状态。</p>
+<h3 id="3-3-2-银行家算法"><a href="#3-3-2-银行家算法" class="headerlink" title="3.3.2 银行家算法"></a>3.3.2 银行家算法</h3><table>
+<thead>
+<tr>
+<th>进程</th>
+<th>最大需求</th>
+<th>已分配</th>
+<th>最多还需要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P0</td>
+<td>(7,5,3)</td>
+<td>(0,1,0)</td>
+<td>(7,4,3)</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>(3,2,2)</td>
+<td>(2,0,0)</td>
+<td>(1,2,2)</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>(9,0,2)</td>
+<td>(3,0,2)</td>
+<td>(6,0,0)</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>(2,2,2)</td>
+<td>(2,1,1)</td>
+<td>(0,1,1)</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>(4,3,3)</td>
+<td>(0,0,2)</td>
+<td>(4,3,1)</td>
+</tr>
+</tbody></table>
+<p>资源总数：(10,5,7)，分配后还剩下(3,3,2)</p>
+<p>只需要观察P0-P4的“最多还需要”列谁小于(3,3,2)，就将其加入安全序列。</p>
+<p>本题中P1、P3符合条件，加入安全序列，资源归还，资源还有(7,4,3)</p>
+<p>剩余进程为：</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>最大需求</th>
+<th>已分配</th>
+<th>最多还需要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P0</td>
+<td>(7,5,3)</td>
+<td>(0,1,0)</td>
+<td>(7,4,3)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>(9,0,2)</td>
+<td>(3,0,2)</td>
+<td>(6,0,0)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>(4,3,3)</td>
+<td>(0,0,2)</td>
+<td>(4,3,1)</td>
+</tr>
+</tbody></table>
+<p>发现剩余P0、P2、P4的“最多还需要”都小于(7,4,3)所以可以构建安全序列。</p>
+<h2 id="死锁的检测和解除"><a href="#死锁的检测和解除" class="headerlink" title="死锁的检测和解除"></a>死锁的检测和解除</h2><h3 id="1-如何检测死锁"><a href="#1-如何检测死锁" class="headerlink" title="1. 如何检测死锁"></a>1. 如何检测死锁</h3><p>数据结构：资源分配图</p>
+<p><img src="https://blog.yoobit.cn/img_out/system/system_3_03_01.jpg" srcset="/img/loading.gif" lazyload alt="资源分配图示例" title="资源分配图示例"></p>
+<p>两种结点：进程节点、资源节点</p>
+<p>两种边：</p>
+<ul>
+<li>进程节点—&gt;资源结点（请求边）</li>
+<li>资源节点—&gt;进程结点（分配边）</li>
+</ul>
+<p><strong>死锁检测算法</strong>：</p>
+<p>依次消除与不阻塞进程相连的边，直到无边可消</p>
+<blockquote>
+<p>所谓不阻塞进程是指其申请的资源数还足够的进程</p>
+</blockquote>
+<p>死锁定理：若资源分配图是不可完全简化的，说明发生了死锁。</p>
+<h3 id="如何解除死锁"><a href="#如何解除死锁" class="headerlink" title="如何解除死锁"></a>如何解除死锁</h3><ol>
+<li><p>资源剥夺法：挂起(暂时放到外存上)某些死锁进程，并抢占它的资源，将这些资源分配给其他的死锁进程。但是应防止被挂起的进程长时间得不到资源而饥饿。</p>
+</li>
+<li><p>撤销进程法（终止进程法）：强制撤销部分、甚至全部死锁进程，并剥夺这些进程的资源。这种方式的优点是实现简单，但所付出的代价可能会很大。因为有些进程可能已经运行了很长时间，已经接近结束了，一旦被终止可谓功亏一簧，以后还得从头再来。</p>
+</li>
+<li><p>进程回退法：让一个或多个死锁进程回退到足以避免死锁的地步。这就要求系统要记录进程的历史信息，设置还原点。</p>
+</li>
+</ol>
+<p>如何决定对哪个进程进行操作：</p>
+<ol>
+<li>进程优先级</li>
+<li>已执行多长时间</li>
+<li>还要多久能完成</li>
+<li>进程已经使用了多少资源</li>
+<li>进程是交互式的还是批处理式的</li>
 </ol>
 
                 
